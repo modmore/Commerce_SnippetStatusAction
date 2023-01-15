@@ -3,6 +3,7 @@
 namespace modmore\Commerce_SnippetStatusAction\Validation;
 
 use modmore\Commerce\Admin\Widgets\Form\Validation\Rule;
+use modmore\Commerce\Services\I18n;
 
 class SnippetWithNameExists extends Rule
 {
@@ -16,11 +17,14 @@ class SnippetWithNameExists extends Rule
 
         $this->adapter = $adapter;
     }
+
     /**
      * @param $value
-     * @return boolean
+     * @param I18n|null $i18n
+     * @param array|null $translations
+     * @return bool|string
      */
-    public function isValid($value)
+    public function isValid($value, ?I18n $i18n = null, ?array $translations = [])
     {
         return $this->adapter->getCount('modSnippet', ['name' => $value]) === 1
             ? true
