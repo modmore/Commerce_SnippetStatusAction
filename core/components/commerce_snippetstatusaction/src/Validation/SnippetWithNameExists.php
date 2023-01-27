@@ -20,11 +20,9 @@ class SnippetWithNameExists extends Rule
 
     /**
      * @param $value
-     * @param I18n|null $i18n
-     * @param array|null $translations
      * @return bool|string
      */
-    public function isValid($value, ?I18n $i18n = null, ?array $translations = [])
+    public function isValid($value)
     {
         return $this->adapter->getCount('modSnippet', ['name' => $value]) === 1
             ? true
